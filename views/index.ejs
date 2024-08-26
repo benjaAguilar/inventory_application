@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>M.I.L.F</title>
+</head>
+<body>
+    <h1>M.I.L.F</h1>
+    <h2>Managment of Inventory and Legacy Forge</h2>
+    <nav>
+        <ul>
+            <li><a href="/items">Craft item</a></li>
+            <li><a href="/craftsman">Create craftsman</a></li>
+        </ul>
+    </nav>
+    <ul>
+        <% locals.inventory.map(item => { %>
+            <li class="inventory"><%= item %> <button>update</button> <button>delete</button></li>
+        <% }) %>
+    </ul>
+
+</body>
+</html>
