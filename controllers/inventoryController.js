@@ -1,16 +1,23 @@
+const db = require("../db/queries");
+
 async function getIndex(req, res) {
-    res.render('index', {inventory: ['a', 'b', 'c', 'd']});
+    const inv = await db.getInventory();
+    console.log(inv);
+    res.render('index', {inventory: inv});
 }
 
 async function getItemsSection(req, res){
+    const {craftsmans, types} = await db.getTypesAndCraftsmans();
     res.render('items', {
-        craftsmans: ['a', 'b', 'c', 'd'],
-        types: ['a', 'b', 'c', 'd']
+        craftsmans: craftsmans,
+        types: types
     });
 }
 
 async function postItems(req, res){
     const {item, craftsman, type} = req.body;
+    await db.postItem(item, parseInt(craftsman), parseInt(type));
+    
     res.redirect('/');
 }
 
