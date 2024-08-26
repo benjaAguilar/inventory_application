@@ -16,8 +16,8 @@
         </ul>
     </nav>
     <ul>
-        <% locals.inventory.map(item => { %>
-            <li class="inventory"><%= item %> <button>update</button> <button>delete</button></li>
+        <% locals.inventory.map(inv => { %>
+            <li class="inventory">name: <%= inv.item %> craftsman: <%= inv.name === null ? 'Unknown Warrior' : inv.name %> type: <%= inv.type %> <button>update</button> <button>delete</button></li>
         <% }) %>
     </ul>
 

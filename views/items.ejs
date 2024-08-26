@@ -24,7 +24,7 @@
             Type
             <select name="type" id="type" required>
                 <% locals.types.map(type => { %>
-                    <option value=<%= type.id %> ><%= type.name %></option>
+                    <option value=<%= type.id %> ><%= type.type %></option>
                <% }) %>
             </select>
         </label>
