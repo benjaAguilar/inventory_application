@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.I.L.F</title>
+</head>
+<body>
+    <h1>Update an item</h1>
+    <form action="/<%= item.id %>/update" method="post">
+        <label>
+            Item Name
+            <input type="text" name="item" id="item" value="<%= item.item %>" required>
+        </label>
+        <label>
+            Craftsman
+            <select name="craftsman" id="craftsman" required>
+                <% locals.craftsmans.map(craftsman => { %>
+                    <option value=<%= craftsman.id %> <%= craftsman.id === item.craftsman_id ? 'selected' : '' %> ><%= craftsman.name %></option>
+               <% }) %>
+            </select>
+        </label>
+        <label>
+            Type
+            <select name="type" id="type" required>
+                <% locals.types.map(type => { %>
+                    <option value=<%= type.id %> <%= type.id === item.type_id ? 'selected' : '' %> ><%= type.type %></option>
+               <% }) %>
+            </select>
+        </label>
+        <input type="submit">
+    </form>
+</body>
+</html>
