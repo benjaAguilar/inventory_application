@@ -18,8 +18,10 @@
         <div>
             <img src="./media/icons/craftsman.svg" alt="">
             <p><%= craftman.name %></p>
-            <button>update</button>
-            <button>delete</button>
+            <a href="/<%= craftman.id %>/craftsman-update">Update</a>
+            <form action="/<%= craftman.id %>/delete-craftsman" method="post">
+                <input type="submit" value="delete">
+            </form>
         </div>
     <% }) %>
 </body>
