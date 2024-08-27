@@ -14,5 +14,13 @@
         </label>
         <input type="submit">
     </form>
+    <% locals.craftsmans.map(craftman => { %>
+        <div>
+            <img src="./media/icons/craftsman.svg" alt="">
+            <p><%= craftman.name %></p>
+            <button>update</button>
+            <button>delete</button>
+        </div>
+    <% }) %>
 </body>
 </html>
