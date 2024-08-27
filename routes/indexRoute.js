@@ -19,4 +19,10 @@ router.get('/craftsman', craftsmanController.getCraftsmanSection);
 
 router.post('/craftsman', craftsmanController.postCraftsman);
 
+router.get('/:id/craftsman-update', craftsmanController.getUpdateCraftsman);
+
+router.post('/:id/craftsman-update', craftsmanController.postUpdateCraftsman);
+
+router.post('/:id/delete-craftsman', craftsmanController.deleteCraftsman);
+
 module.exports = router;
