@@ -1,7 +1,9 @@
 const db = require('../db/queries');
 
 async function getCraftsmanSection(req, res){
-    res.render('craftsman');
+    const { craftsmans } = await db.getTypesAndCraftsmans();
+    
+    res.render('craftsman', {craftsmans: craftsmans});
 }
 
 async function postCraftsman(req, res) {
