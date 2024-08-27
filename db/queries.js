@@ -12,6 +12,15 @@ async function getInventory(){
     return rows;
 }
 
+async function getCraftman(id) {
+    const { rows } = await pool.query(`
+        SELECT * FROM craftsmans
+        WHERE id = $1
+        `, [id]);
+
+    return rows[0]
+}
+
 async function getTypesAndCraftsmans(){
     const craftsmans = await pool.query(`
         SELECT * FROM craftsmans
@@ -62,9 +71,24 @@ async function updateItem(id, item, craftsman_id, type_id){
         `, [id, item, craftsman_id, type_id]);
 }
 
+async function updateCraftsman(id, name){
+    await pool.query(`
+        UPDATE craftsmans
+        SET name = $2
+        WHERE id = $1
+        `, [id, name]);
+}
+
 async function deleteItem(id){
     await pool.query(`
         DELETE FROM inventory
+        WHERE id = $1
+        `, [id]);
+}
+
+async function deleteCraftsman(id){
+    await pool.query(`
+        DELETE FROM craftsmans
         WHERE id = $1
         `, [id]);
 }
@@ -77,5 +101,8 @@ module.exports = {
     postCraftsman,
     getAllTables,
     deleteItem,
-    updateItem
+    updateItem,
+    updateCraftsman,
+    deleteCraftsman,
+    getCraftman
 }
