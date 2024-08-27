@@ -1,4 +1,5 @@
 const db = require('../db/queries');
+const { validateCraftsman } = require('../utils/validator');
 
 async function getCraftsmanSection(req, res){
     const { craftsmans } = await db.getTypesAndCraftsmans();
@@ -7,6 +8,18 @@ async function getCraftsmanSection(req, res){
 }
 
 async function postCraftsman(req, res) {
+    const { error, value } = validateCraftsman(req.body);
+    if(error){
+        const { craftsmans } = await db.getTypesAndCraftsmans();
+
+        res.status(400).render('craftsman', {
+            craftsmans: craftsmans,
+            errors: error.details
+        });
+
+        return;
+    }
+
     const { name } = req.body;
     await db.postCraftsman(name);
     
@@ -23,6 +36,19 @@ async function getUpdateCraftsman(req, res){
 }
 
 async function postUpdateCraftsman(req, res){
+    const { error, value } = validateCraftsman(req.body);
+    if(error){
+        const id = req.params.id;
+        const craftsman = await db.getCraftman(id);
+
+        res.status(400).render('updateCraftsman', {
+            craftsman: craftsman,
+            errors: error.details
+        });
+
+        return;
+    }
+
     const { name } = req.body;
     const id = req.params.id;
 

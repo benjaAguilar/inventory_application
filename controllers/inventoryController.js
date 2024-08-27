@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { validateItem, validateUpdateItem } = require("../utils/validator");
 
 async function getIndex(req, res) {
     const inv = await db.getInventory();
@@ -21,18 +22,46 @@ async function getUpdateItem(req, res){
     res.render('updateItem', {item: item, craftsmans: craftsmans, types: types});
 }
 
-async function postItems(req, res){
+async function postItems(req, res, next){
+    const { error, value } = validateItem(req.body);
+    if(error){
+        const {craftsmans, types} = await db.getTypesAndCraftsmans();
+        
+        res.status(400).render('items', {
+            craftsmans: craftsmans,
+            types: types,
+            errors: error.details
+        });
+
+        return;
+    }
+
     const {item, craftsman, type} = req.body;
     await db.postItem(item, parseInt(craftsman), parseInt(type));
     
     res.redirect('/');
 }
 
-async function postUpdateItems(req, res){
-    const {item, craftsman, type} = req.body;
+async function postUpdateItems(req, res, next){
+    const { error, value } = validateUpdateItem(req.body);
+    if(error){
+        const itemId = req.params.id;
+        const {item, craftsmans, types} = await db.getAllTables(itemId);
+
+        res.status(400).render('updateItem', {
+            item: item,
+            craftsmans: craftsmans,
+            types: types,
+            errors: error.details
+        });
+
+        return;
+    }
+
+    const {updatedItem, craftsman, type} = req.body;
     const itemId = req.params.id;
 
-    await db.updateItem(itemId, item, craftsman, type);
+    await db.updateItem(itemId, updatedItem, craftsman, type);
     
     res.redirect('/');
 }

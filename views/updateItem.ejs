@@ -7,10 +7,11 @@
 </head>
 <body>
     <h1>Update an item</h1>
+    <%- include("partials/error.ejs") %>
     <form action="/<%= item.id %>/update" method="post">
         <label>
             Item Name
-            <input type="text" name="item" id="item" value="<%= item.item %>" required>
+            <input type="text" name="updatedItem" id="updatedItem" value="<%= item.item %>" required>
         </label>
         <label>
             Craftsman

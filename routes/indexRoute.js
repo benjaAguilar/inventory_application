@@ -1,28 +1,29 @@
 const { Router } = require('express');
 const inventoryController = require('../controllers/inventoryController');
 const craftsmanController = require('../controllers/craftsmanController');
+const { tryCatch } = require('../utils/tryCatch');
 const router = Router();
 
-router.get('/', inventoryController.getIndex);
+router.get('/', tryCatch(inventoryController.getIndex));
 
-router.get('/items', inventoryController.getItemsSection);
+router.get('/items', tryCatch(inventoryController.getItemsSection));
 
-router.get('/:id/update', inventoryController.getUpdateItem);
+router.get('/:id/update', tryCatch(inventoryController.getUpdateItem));
 
-router.post('/:id/update', inventoryController.postUpdateItems);
+router.post('/:id/update', tryCatch(inventoryController.postUpdateItems));
 
-router.post('/:id/delete-item', inventoryController.postDeleteItem);
+router.post('/:id/delete-item', tryCatch(inventoryController.postDeleteItem));
 
-router.post('/items', inventoryController.postItems);
+router.post('/items', tryCatch(inventoryController.postItems));
 
-router.get('/craftsman', craftsmanController.getCraftsmanSection);
+router.get('/craftsman', tryCatch(craftsmanController.getCraftsmanSection));
 
-router.post('/craftsman', craftsmanController.postCraftsman);
+router.post('/craftsman', tryCatch(craftsmanController.postCraftsman));
 
-router.get('/:id/craftsman-update', craftsmanController.getUpdateCraftsman);
+router.get('/:id/craftsman-update', tryCatch(craftsmanController.getUpdateCraftsman));
 
-router.post('/:id/craftsman-update', craftsmanController.postUpdateCraftsman);
+router.post('/:id/craftsman-update', tryCatch(craftsmanController.postUpdateCraftsman));
 
-router.post('/:id/delete-craftsman', craftsmanController.deleteCraftsman);
+router.post('/:id/delete-craftsman', tryCatch(craftsmanController.deleteCraftsman));
 
 module.exports = router;
