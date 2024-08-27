@@ -4,6 +4,7 @@
   "description": "*TOP task* Create a inventory managment with CRUD, postgreSQL and MVC Pattern",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
