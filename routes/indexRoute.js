@@ -7,9 +7,15 @@ router.get('/', inventoryController.getIndex);
 
 router.get('/items', inventoryController.getItemsSection);
 
-router.get('/craftsman', craftsmanController.getCraftsmanSection);
+router.get('/:id/update', inventoryController.getUpdateItem);
+
+router.post('/:id/update', inventoryController.postUpdateItems);
+
+router.post('/:id/delete-item', inventoryController.postDeleteItem);
 
 router.post('/items', inventoryController.postItems);
+
+router.get('/craftsman', craftsmanController.getCraftsmanSection);
 
 router.post('/craftsman', craftsmanController.postCraftsman);
 
