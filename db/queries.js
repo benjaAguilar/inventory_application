@@ -2,7 +2,7 @@ const pool = require('./pool');
 
 async function getInventory(){
     const { rows } = await pool.query(`
-        SELECT item, craftsmans.name, types.type FROM inventory
+        SELECT inventory.id, item, craftsmans.name, types.type FROM inventory
         LEFT JOIN craftsmans 
         ON craftsman_id = craftsmans.id
         LEFT JOIN types
@@ -19,12 +19,24 @@ async function getTypesAndCraftsmans(){
     const types = await pool.query(`
         SELECT * FROM types
        `);
-    
-    console.log(types.rows);
 
     return{
         craftsmans: craftsmans.rows,
         types: types.rows
+    }
+}
+
+async function getAllTables(id){
+    const { rows } = await pool.query(`
+        SELECT * FROM inventory
+        WHERE id = $1
+        `, [id]);
+    const {craftsmans, types} = await getTypesAndCraftsmans();
+
+    return{
+        item: rows[0],
+        craftsmans: craftsmans,
+        types: types
     }
 }
 
@@ -40,10 +52,30 @@ async function postCraftsman(name){
         `, [name]);
 }
 
+async function updateItem(id, item, craftsman_id, type_id){
+    await pool.query(`
+        UPDATE inventory
+        SET item = $2,
+        craftsman_id = $3,
+        type_id = $4
+        WHERE id = $1
+        `, [id, item, craftsman_id, type_id]);
+}
+
+async function deleteItem(id){
+    await pool.query(`
+        DELETE FROM inventory
+        WHERE id = $1
+        `, [id]);
+}
+
 
 module.exports = {
     getInventory, 
     getTypesAndCraftsmans,
     postItem,
-    postCraftsman
+    postCraftsman,
+    getAllTables,
+    deleteItem,
+    updateItem
 }
