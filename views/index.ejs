@@ -17,7 +17,7 @@
     </nav>
     <ul>
         <% locals.inventory.map(inv => { %>
-            <li class="inventory">name: <%= inv.item %> craftsman: <%= inv.name === null ? 'Unknown Warrior' : inv.name %> type: <%= inv.type %> <button>update</button> <button>delete</button></li>
+            <li class="inventory">name: <%= inv.item %> craftsman: <%= inv.name === null ? 'Unknown Warrior' : inv.name %> type: <%= inv.type %> <a href="/<%= inv.id %>/update">Update</a> <form action="/<%= inv.id %>/delete-item" method="post"><input type="submit" value="delete"></form></li>
         <% }) %>
     </ul>
 
