@@ -13,7 +13,36 @@ async function postCraftsman(req, res) {
     res.redirect('/');
 }
 
+async function getUpdateCraftsman(req, res){
+    const id = req.params.id;
+    const craftsman = await db.getCraftman(id);
+
+    console.log(craftsman);
+
+    res.render('updateCraftsman', {craftsman: craftsman});
+}
+
+async function postUpdateCraftsman(req, res){
+    const { name } = req.body;
+    const id = req.params.id;
+
+    await db.updateCraftsman(id, name);
+
+    res.redirect('/craftsman');
+}
+
+async function deleteCraftsman(req, res){
+    const id = req.params.id;
+
+    await db.deleteCraftsman(id);
+
+    res.redirect('/');
+}
+
 module.exports = {
     getCraftsmanSection,
-    postCraftsman
+    postCraftsman,
+    getUpdateCraftsman,
+    postUpdateCraftsman,
+    deleteCraftsman
 }
