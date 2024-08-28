@@ -3,6 +3,7 @@
     margin: 0;
     list-style: none;
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a{
@@ -10,10 +11,99 @@ a{
 }
 
 body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #fafafa;
 }
 
-.inventory{
+header{
+    background-color: #262626;
+    color: #fafafa;
     padding: 1rem;
-    border: 2px solid #262626
+    width: 100%;
+    h2{
+       font-size: 1rem; 
+    }
+}
+
+nav{
+    width: 100%;
+    padding: 1rem;
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+input[type=submit], a{
+    padding: 0.5rem;
+    color: #262626;
+    background-color: #fafafa;
+    border: 2px solid #262626;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    transition: color 200ms ease, background-color 200ms ease;
+}
+
+input[type=submit]:hover, a:hover{
+    cursor: pointer;
+    border-color: transparent;
+    background-color: #262626;
+    color: #fafafa;
+}
+
+.invBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.inventory{
+    display: grid;
+    grid-template-columns: 70px 200px;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid #262626;
+    border-radius: 1rem;
+    box-shadow: inset 0px 0px 5px #26262680;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .type{
+        color: #71717a;
+    }
+}
+
+.typeImg{
+    width: 70px;
+}
+
+.itemName{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.craft{
+    display: flex;
+    align-items: end;
+    gap: 0.2rem;
+}
+
+.btns{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    grid-column: 2;
 }

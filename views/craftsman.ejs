@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/craft.css">
     <title>M.I.L.F</title>
 </head>
 <body>
@@ -15,15 +17,19 @@
         </label>
         <input type="submit">
     </form>
-    <% locals.craftsmans.map(craftman => { %>
-        <div>
-            <img src="./media/icons/craftsman.svg" alt="">
-            <p><%= craftman.name %></p>
-            <a href="/<%= craftman.id %>/craftsman-update">Update</a>
-            <form action="/<%= craftman.id %>/delete-craftsman" method="post">
-                <input type="submit" value="delete">
-            </form>
-        </div>
-    <% }) %>
+    <div class="craftsmans">
+        <% locals.craftsmans.map(craftman => { %>
+            <div class="craftBox">
+                <img src="./media/icons/craftsman.svg" alt="">
+                <p><%= craftman.name %></p>
+                <div>
+                    <a href="/<%= craftman.id %>/craftsman-update">Update</a>
+                    <form action="/<%= craftman.id %>/delete-craftsman" method="post">
+                        <input type="submit" value="delete">
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </body>
 </html>

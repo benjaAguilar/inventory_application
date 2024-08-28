@@ -7,19 +7,34 @@
     <title>M.I.L.F</title>
 </head>
 <body>
-    <h1>M.I.L.F</h1>
-    <h2>Managment of Inventory and Legacy Forge</h2>
+    <header>
+        <h1>M.I.L.F</h1>
+        <h2>Managment of Inventory and Legacy Forge</h2>
+    </header>
     <nav>
         <ul>
             <li><a href="/items">Craft item</a></li>
             <li><a href="/craftsman">Create craftsman</a></li>
         </ul>
     </nav>
-    <ul>
+    <div class="invBox">
         <% locals.inventory.map(inv => { %>
-            <li class="inventory">name: <%= inv.item %> craftsman: <%= inv.name === null ? 'Unknown Warrior' : inv.name %> type: <%= inv.type %> <a href="/<%= inv.id %>/update">Update</a> <form action="/<%= inv.id %>/delete-item" method="post"><input type="submit" value="delete"></form></li>
+            <div class="inventory">
+                <img src="<%= icons[inv.type] %>" alt="" class="typeImg">
+                <div class="data">
+                    <p class="itemName"><%= inv.item %></p>
+                    <div class="craft">
+                        <img src="./media/icons/craftsman.svg" alt="">
+                        <p><%= inv.name === null ? 'Unknown Warrior' : inv.name %></p>
+                     </div>
+                     <p class="type"><%= inv.type %></p>
+                </div>
+                <div class="btns">
+                    <a href="/<%= inv.id %>/update">Update</a> 
+                    <form action="/<%= inv.id %>/delete-item" method="post"><input type="submit" value="delete"></form>
+                </div>
+            </div>
         <% }) %>
-    </ul>
-
+    </div>
 </body>
 </html>

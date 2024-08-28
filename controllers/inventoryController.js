@@ -1,10 +1,18 @@
 const db = require("../db/queries");
 const { validateItem, validateUpdateItem } = require("../utils/validator");
+const icons = {
+    Potions: './media/icons/potion.svg',
+    Weapons: './media/icons/weapon.svg',
+    Armor: './media/icons/armor.svg',
+    Food: './media/icons/food.svg',
+    Tools: './media/icons/tool.svg',
+    Miscellaneos: './media/icons/miscellaneos.svg',
+} 
 
 async function getIndex(req, res) {
     const inv = await db.getInventory();
     console.log(inv);
-    res.render('index', {inventory: inv});
+    res.render('index', {inventory: inv, icons: icons});
 }
 
 async function getItemsSection(req, res){

@@ -1,0 +1,33 @@
+body{
+    gap: 1rem;
+}
+
+.craftsmans{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.craftBox{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 2px solid #262626;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: inset 0px 0px 5px #26262680;
+    img{
+        width: 50px;
+    }
+    div{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+select, input[type=text]{
+    width: 200px;
+    padding: 5px;
+}
